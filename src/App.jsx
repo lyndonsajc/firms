@@ -173,6 +173,11 @@ export default function App() {
         .text-\[11px\] { font-size: 11px; }
         .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
         .controls-row { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0.75rem; align-items:start; }
+        .space-y-1 > * + * { margin-top: 0.25rem; }
+        .text-center { text-align: center; }
+        .flex-col { flex-direction: column; }
+        .justify-start { justify-content: flex-start; }
+        svg { width: 100%; height: auto; display: block; }
         .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         @media (min-width: 768px) {
           .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
