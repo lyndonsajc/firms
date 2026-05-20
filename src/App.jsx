@@ -99,7 +99,86 @@ export default function App() {
         : "Fixed cost is at the base level, so AC is at its original position on MC.";
 
   return (
-    <div className="min-h-screen bg-slate-50 p-6 text-slate-900">
+    <>
+      <style>{`
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Inter, Arial, sans-serif; background: #f8fafc; color: #0f172a; }
+        .min-h-screen { min-height: 100vh; }
+        .bg-slate-50 { background: #f8fafc; }
+        .bg-white { background: #ffffff; }
+        .bg-slate-100 { background: #f1f5f9; }
+        .bg-slate-900 { background: #0f172a; }
+        .bg-emerald-100 { background: #d1fae5; }
+        .bg-rose-100 { background: #ffe4e6; }
+        .text-slate-900 { color: #0f172a; }
+        .text-slate-700 { color: #334155; }
+        .text-slate-500 { color: #64748b; }
+        .text-slate-400 { color: #94a3b8; }
+        .text-white { color: white; }
+        .text-emerald-700 { color: #047857; }
+        .text-rose-700 { color: #be123c; }
+        .text-sm { font-size: 0.875rem; }
+        .text-xs { font-size: 0.75rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .uppercase { text-transform: uppercase; }
+        .tracking-wide { letter-spacing: 0.025em; }
+        .p-2 { padding: 0.5rem; }
+        .p-3 { padding: 0.75rem; }
+        .p-4 { padding: 1rem; }
+        .p-6 { padding: 1.5rem; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .mt-1 { margin-top: 0.25rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .max-w-7xl { max-width: 80rem; }
+        .max-w-3xl { max-width: 48rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .space-y-2 > * + * { margin-top: 0.5rem; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .rounded-3xl { border-radius: 1.5rem; }
+        .rounded-full { border-radius: 9999px; }
+        .border { border: 1px solid #e2e8f0; }
+        .shadow-sm { box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+        .grid { display: grid; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .items-start { align-items: flex-start; }
+        .justify-between { justify-content: space-between; }
+        .gap-3 { gap: 0.75rem; }
+        .gap-4 { gap: 1rem; }
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        .min-w-0 { min-width: 0; }
+        .overflow-hidden { overflow: hidden; }
+        .list-disc { list-style-type: disc; }
+        .pl-4 { padding-left: 1rem; }
+        .leading-5 { line-height: 1.25rem; }
+        .leading-6 { line-height: 1.5rem; }
+        .italic { font-style: italic; }
+        button { cursor: pointer; background: white; }
+        button:hover { background: #f1f5f9; }
+        input[type='range'] { width: 100%; accent-color: #1e293b; }
+        .h-\[430px\] { height: 430px; }
+        .text-\[11px\] { font-size: 11px; }
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        .controls-row { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0.75rem; align-items:start; }
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        @media (min-width: 768px) {
+          .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
+      `}</style>
+      <div className="min-h-screen bg-slate-50 p-6 text-slate-900">
       <div className="mx-auto max-w-7xl space-y-6">
         <div className="rounded-3xl border bg-white p-6 shadow-sm">
           <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
@@ -110,48 +189,47 @@ export default function App() {
           </h1>
         </div>
 
-        <div className="rounded-3xl border bg-white shadow-sm">
-          <div className="p-4">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                  Live Teaching Dashboard
-                </p>
-                <h2 className="mt-1 text-2xl font-bold">What changed?</h2>
-              </div>
-
-              <span
-                className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                  graph.totalProfit >= 0
-                    ? "bg-emerald-100 text-emerald-700"
-                    : "bg-rose-100 text-rose-700"
-                }`}
-              >
-                {outcome}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {insightCards.map((item) => (
-                <div key={item.label} className="rounded-2xl border bg-white p-3 min-w-0">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                    {item.label}
-                  </p>
-                  <p className="mt-1 text-xl font-bold text-slate-900">{item.value}</p>
-                  <p className="mt-1 text-xs leading-5 text-slate-500">{item.note}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-3xl bg-white shadow-sm">
-          <div className="p-6">
-            <h2 className="mb-1 text-xl font-bold">
-              Firm's Cost and Revenue Diagram
+        <div className="grid" style={{gridTemplateColumns:'2fr 1fr', gap:'1rem', alignItems:'start'}}>
+          <div className="rounded-3xl bg-white shadow-sm">
+            <div className="p-6">
+              <h2 className="mb-1 text-xl font-bold">Firm's Cost and Revenue Diagram
             </h2>
 
             <MonopolyDiagram graph={graph} />
+            </div>
+          </div>
+
+          <div className="rounded-3xl border bg-white shadow-sm">
+            <div className="p-4">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                    Live Teaching Dashboard
+                  </p>
+                  <h2 className="mt-1 text-2xl font-bold">What changed?</h2>
+                </div>
+
+                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                  graph.totalProfit >= 0
+                    ? "bg-emerald-100 text-emerald-700"
+                    : "bg-rose-100 text-rose-700"
+                }`}>
+                  {outcome}
+                </span>
+              </div>
+
+              <div className="space-y-2">
+                {insightCards.map((item) => (
+                  <div key={item.label} className="rounded-2xl border bg-white p-3 min-w-0">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                      {item.label}
+                    </p>
+                    <p className="mt-1 text-xl font-bold text-slate-900">{item.value}</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-500">{item.note}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -168,7 +246,7 @@ export default function App() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-4 items-start">
+            <div style={{display:'grid', gridTemplateColumns:'repeat(4, minmax(0, 1fr))', gap:'0.75rem', alignItems:'start'}}>
               <Control title="Fixed Cost" value={`$${fixedCost.toFixed(0)}`} note="Shifts AC; AC minimum moves along MC" min="50" max="300" examples={["Rent or lease increases", "New machinery or equipment"]}>
                 <input type="range" value={fixedCost} min={50} max={300} step={1} onChange={(e) => setFixedCost(Number(e.target.value))} className="w-full accent-slate-800" />
               </Control>
@@ -189,6 +267,7 @@ export default function App() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
